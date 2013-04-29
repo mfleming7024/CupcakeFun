@@ -5,6 +5,8 @@ package services
 	import flash.net.NetConnection;
 	import flash.net.Responder;
 	
+	import events.CupCakeEvent;
+	
 	public class CupCakeService extends EventDispatcher
 	{
 		private var _nc:NetConnection;
@@ -21,16 +23,16 @@ package services
 			_nc.call("CakeService.readCakes", _res);
 		}
 		
-		private function onItemsLoaded():void
+		private function onItemsLoaded(data:Array):void
 		{
-			// TODO Auto Generated method stub
-			
+			var evt:CupCakeEvent = new CupCakeEvent(CupCakeEvent.LOADED);
+			evt.cupCakeArray = data;
+			dispatchEvent(evt);
 		}
 		
-		private function onFail():void
+		private function onFail(error:*):void
 		{
-			// TODO Auto Generated method stub
-			
+			trace("Call Failed" + error);
 		}
 	}
 }

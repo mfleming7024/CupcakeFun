@@ -27,10 +27,9 @@
 				cupCakeService.getAllItems();
 			}
 			
-			protected function onLoaded(event:Event):void
+			protected function onLoaded(event:CupCakeEvent):void
 			{
-				// TODO Auto-generated method stub
-				trace("loaded");
+				cupCakeArray = new ArrayList(event.cupCakeArray);
 			}
 			
 		]]>
